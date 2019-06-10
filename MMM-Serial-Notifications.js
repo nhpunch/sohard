@@ -31,7 +31,7 @@ Module.register('MMM-Serial-Notifications', {
 		button.appendChild(text);
 		text.innerHTML = "ON";
 
-    	wrapper.appendChild(button);
+    		wrapper.appendChild(button);
 		wrapper.appendChild(overlay);
 		
 		$(button).on("click", function(){
@@ -50,7 +50,5 @@ Module.register('MMM-Serial-Notifications', {
 			}
 		});
 		return wrapper;
-
-		this.sendNotification('CONFIG', button);
 	}
 });
