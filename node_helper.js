@@ -7,13 +7,11 @@ module.exports = NodeHelper.create({
   },
 
   socketNotificationReceived: function (notification, payload) {
+    const self = this
 
     if (notification === 'CONFIG') {
-      const self = this;
-      self.config = payload;
-    }
-    else if(notification === 'BUTTON_PRESSED')
-    {
+      self.config = payload
+      
     var serialport = new Serialport('/dev/ttyACM0', {   
 		baudRate: 9600
 		});
@@ -26,18 +24,15 @@ module.exports = NodeHelper.create({
           console.log('data received: ' + data);
         });
         
-        if(this.isPushed == false)
+        if(this._isPushed==false)
         {
-        setInterval(() => { // 2초마다 아두이노에게 문자열을 전송하는 예
-          led = !led;
-          serialport.write(led==true ? "1" : "0", function(err, result){
-            if(err){
-             console.log(err);
-            }
-          });
-        }, 5000);
-      }
-    });
-  }
-}, 
+          serialport.write("0");
+        }
+        else if(this._isPushed==true)
+        {
+          serialport.write("1");
+        }
+      });
+    }
+  }, 
 })
