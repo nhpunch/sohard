@@ -7,11 +7,13 @@ module.exports = NodeHelper.create({
   },
 
   socketNotificationReceived: function (notification, payload) {
-    const self = this
 
     if (notification === 'CONFIG') {
-      self.config = payload
-      
+      const self = this;
+      self.config = payload;
+    }
+    else if(notification ==='BUTTON_PRESSED')
+    {
     var serialport = new Serialport('/dev/ttyACM0', {   
 		baudRate: 9600
 		});
