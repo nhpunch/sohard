@@ -31,24 +31,21 @@ Module.register('MMM-Serial-Notifications', {
 		button.appendChild(text);
 		text.innerHTML = "ON";
 
-    		wrapper.appendChild(button);
+    	wrapper.appendChild(button);
 		wrapper.appendChild(overlay);
 		
-		$(button).on("click", function(){
-			if(hidden){
-				$(overlay).fadeIn(1000);
-				$(button).fadeTo(1000, 0.3);
-				$(text).html('OFF');
-				hidden = false;  
-				this._isPushed = false;
-			}else{
-				$(overlay).fadeOut(1000);
-				$(button).fadeTo(1000, 1);  
-				$(text).html('ON');
-				hidden = true;
-				this._isPushed = true;
-			}
-		});
-		return wrapper;
+		button.addEventListener('click', ()=> {
+   	
+				if(self.hidden){
+					Log.log("button pushed 'on' ")
+					self.hidden = false;  
+					self._isPushed = false;
+				}else{
+					Log.log("button pushed 'off' ")
+					self.hidden = true;
+					self._isPushed = true;
+				}
+			});
+			return wrapper;
 	}
 });
